@@ -1,23 +1,31 @@
 // ITERATION 1
 
 function updateSubtotal(product) {
-  console.log('Calculating subtotal, yey!');
-
-  //... your code goes here
+  let price = product.querySelector('.price span');
+  let nextPrice = price.innerHTML;
+  let quantity = product.querySelector('.quantity input').value;
+  let subtotal = product.querySelector('.subtotal span');
+  let finalPrice = nextPrice * quantity;
+  subtotal.innerHTML = finalPrice;
+  return finalPrice;
 }
 
 function calculateAll() {
-  // code in the following two lines is added just for testing purposes.
-  // it runs when only iteration 1 is completed. at later point, it can be removed.
-  const singleProduct = document.querySelector('.product');
-  updateSubtotal(singleProduct);
-  // end of test
+  
+  const manyProduct = document.querySelectorAll('.product')
+for (let i = 0; i < manyProduct.length; i++){
+  updateSubtotal(manyProduct[i]);
+}
 
-  // ITERATION 2
-  //... your code goes here
+let sum = 0;
 
-  // ITERATION 3
-  //... your code goes here
+let finalSubtotal = document.querySelectorAll('.subtotal span')
+for (let i = 0; i < finalSubtotal.length; i++){
+  sum += Number((finalSubtotal[i].innerText))
+}
+
+ let finalPrice = document.querySelector('h2 span');
+ finalPrice.innerHTML = String(sum);
 }
 
 // ITERATION 4
@@ -25,18 +33,29 @@ function calculateAll() {
 function removeProduct(event) {
   const target = event.currentTarget;
   console.log('The target in remove is:', target);
-  //... your code goes here
+  removeButtons.parentNode.removeChild(".btn")
 }
 
 // ITERATION 5
 
 function createProduct() {
-  //... your code goes here
+  
 }
+
+
+
+
 
 window.addEventListener('load', () => {
   const calculatePricesBtn = document.getElementById('calculate');
+  const removeButtons = document.getElementsByClassName("btn-remove")
+  
   calculatePricesBtn.addEventListener('click', calculateAll);
 
-  //... your code goes here
-});
+  for (let i = 0; i < removeButtons.length; i++){
+    removeButtons[i].addEventListener('click', () =>{
+      removeProduct;
+    });
+  }
+  
+})
